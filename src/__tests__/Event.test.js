@@ -7,7 +7,7 @@ describe('<Event /> component', () => {
 
   test('render Event Title', () => {
     const EventWrapper = shallow(<Event />);
-    expect(EventWrapper.find('.event-container')).toHaveLength(1);
+    expect(EventWrapper.find('.event')).toHaveLength(1);
   })
 
   test('render basic event information', () => {
@@ -17,7 +17,7 @@ describe('<Event /> component', () => {
 
   test('have a show details button', () => {
     const EventWrapper = shallow(<Event />);
-    expect(EventWrapper.find('.show-hide-btn')).toHaveLength(1);
+    expect(EventWrapper.find('.details-btn')).toHaveLength(1);
   })
 
   test('event details expand on click', () => {

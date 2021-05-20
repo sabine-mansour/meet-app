@@ -70,7 +70,6 @@ describe('<App /> integration', () => {
   test('App passes "numberOfEvents" as a prop to NumberOfEvents', () => {
     const AppWrapper = mount(<App />);
     const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
-    expect(AppNumberOfEventsState).not.toEqual(undefined);
     expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
     AppWrapper.unmount();
   });
@@ -78,6 +77,7 @@ describe('<App /> integration', () => {
   test('get list on change number of events by user', async () => {
     const AppWrapper = mount(<App />);
     const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    const locations = extractLocations(mockData);
     AppWrapper.instance().updateEvents = jest.fn();
     AppWrapper.instance().forceUpdate();
     NumberOfEventsWrapper.setState({ events: locations, numberOfEvents: 5 });
