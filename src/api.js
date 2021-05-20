@@ -37,7 +37,7 @@ const getEvents = async () => {
 
   if (window.location.href.startsWith("http://localhost")) {
     NProgress.done();
-    return mockData;
+    return { events: mockData, locations: extractLocations(mockData) };
   }
 
 

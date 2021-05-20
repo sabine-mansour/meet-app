@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class Event extends Component {
   state = {
+    event: {},
     showHideDetails: false,
   };
 
@@ -19,7 +20,7 @@ class Event extends Component {
       <div className='event'>
         <h1 className='name'>{event.summary}</h1>
         <p>{event.start.dateTime}</p>
-        <p className='locations'>{event.location}</p>
+        <p className='locations'>{event.ocation}</p>
 
         {this.state.showHideDetails && (
           <div className='event-details'>
