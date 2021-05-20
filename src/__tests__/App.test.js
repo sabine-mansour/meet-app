@@ -35,7 +35,7 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('App pases "locations" as a prop to CitySearch', () => {
+  test('App passes "locations" as a prop to CitySearch', () => {
     const AppWrapper = mount(<App />);
     const AppLocationsState = AppWrapper.state('locations');
     expect(AppLocationsState).not.toEqual(undefined);
@@ -64,6 +64,26 @@ describe('<App /> integration', () => {
     await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
     expect(AppWrapper.state('events')).toEqual(allEvents);
+    AppWrapper.unmount();
+  });
+
+  test('App passes "numberOfEvents" as a prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+    expect(AppNumberOfEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
+    AppWrapper.unmount();
+  });
+
+  test('get list on change number of events by user', async () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    NumberOfEventsWrapper.setState({ events: locations, numberOfEvents: 5 });
+    NumberOfEventsWrapper.find('.eventNumber').simulate('change');
+    expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual('5');
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith('', '5');
     AppWrapper.unmount();
   });
 

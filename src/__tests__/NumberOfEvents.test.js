@@ -13,7 +13,7 @@ describe('<NumberOfEvents /> component', () => {
   });
 
   test('renders text input correctly', () => {
-    const number = NumberOfEventsWrapper.state('number');
+    const number = NumberOfEventsWrapper.state('NumberOfEvents');
     expect(NumberOfEventsWrapper.find('.eventNumber').prop('value')).toBe(number);
   });
 
