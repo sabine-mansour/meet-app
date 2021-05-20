@@ -83,7 +83,7 @@ describe('<App /> integration', () => {
     NumberOfEventsWrapper.setState({ events: locations, numberOfEvents: 5 });
     NumberOfEventsWrapper.find('.eventNumber').simulate('change');
     expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual('5');
-    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith('', '5');
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith('none', '5');
     AppWrapper.unmount();
   });
 

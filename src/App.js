@@ -20,7 +20,7 @@ class App extends Component {
         locationEvents = events;
       } else if (location !== 'all' && eventCount === 0) {
         locationEvents = events.filter((event) => event.location === location);
-      } else if (location === '' && eventCount > 0) {
+      } else if (location === 'none' && eventCount > 0) {
         locationEvents = events.slice(0, eventCount);
       }
       this.setState({
