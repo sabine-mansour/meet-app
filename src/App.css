@@ -36,11 +36,13 @@ input[type="number"] {
   height: 38px;
 }
 
-.city {
+.city,
+.eventNumber {
   width: 250px;
 }
 
-.CitySearch {
+.CitySearch,
+.NumberOfEvents {
   display: flex;
   flex-direction: column;
   flex-basis: 300px;
@@ -83,6 +85,15 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   position: relative;
+}
+
+.NumberOfEvents {
+  width: 250 px;
+}
+
+.NumberOfEvents label {
+  margin-top: 20px;
+  display: block;
 }
 
 .details-btn {
