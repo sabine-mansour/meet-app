@@ -27,8 +27,8 @@ const checkToken = async (accessToken) => {
 };
 
 const extractLocations = (events) => {
-  var extractLocatins = events.map((event) => event.location);
-  var locations = [...new Set(extractLocatins)];
+  var extractLocations = events.map((event) => event.location);
+  var locations = [...new Set(extractLocations)];
   return locations;
 };
 
