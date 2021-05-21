@@ -43,6 +43,27 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
+  test('App passes "numberOfEvents" as a prop to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
+    AppWrapper.unmount();
+  });
+
+  test('get list on change number of events by user', () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
+    AppWrapper.instance().updateEvents = jest.fn();
+    AppWrapper.instance().forceUpdate();
+    NumberOfEventsWrapper.setState({ numberOfEvents: 5 });
+    const eventObject = { target: { value: 1 } };
+    NumberOfEventsWrapper.find(".event-number-input").simulate("change", eventObject);
+    expect(NumberOfEventsWrapper.state("numberOfEvents")).toBe(1);
+    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith('', 1);
+    AppWrapper.unmount();
+  });
+
+
   test('get list of events matching the city selected by the user', async () => {
     const AppWrapper = mount(<App />);
     const CitySearchWrapper = AppWrapper.find(CitySearch);
@@ -67,26 +88,6 @@ describe('<App /> integration', () => {
     AppWrapper.unmount();
   });
 
-  test('App passes "numberOfEvents" as a prop to NumberOfEvents', () => {
-    const AppWrapper = mount(<App />);
-    const AppNumberOfEventsState = AppWrapper.state('numberOfEvents');
-    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(AppNumberOfEventsState);
-    AppWrapper.unmount();
-  });
-
-  test('get list on change number of events by user', async () => {
-    const AppWrapper = mount(<App />);
-    const NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents);
-    const locations = extractLocations(mockData);
-    AppWrapper.instance().updateEvents = jest.fn();
-    AppWrapper.instance().forceUpdate();
-    NumberOfEventsWrapper.setState({ numberOfEvents: 5 });
-    const eventObject = { target: { value: 1 } };
-    NumberOfEventsWrapper.find('.eventNumber').simulate('change', eventObject);
-    expect(NumberOfEventsWrapper.state('numberOfEvents')).toEqual(1);
-    expect(AppWrapper.instance().updateEvents).toHaveBeenCalledWith('none', 1);
-    AppWrapper.unmount();
-  });
 
 
 });
