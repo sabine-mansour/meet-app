@@ -6,13 +6,15 @@ import NumberOfEvents from './NumberOfEvents';
 import WelcomeScreen from './WelcomeScreen';
 import { getEvents, extractLocations, checkToken, getAccessToken } from './api';
 import "./nprogress.css";
+import { WarningAlert } from './Alert';
 
 class App extends Component {
   state = {
     events: [],
     locations: [],
     numberOfEvents: 5,
-    showWelcomeScreen: undefined
+    showWelcomeScreen: undefined,
+    warningText: ''
   }
 
   updateEvents = (location, eventCount) => {
@@ -50,6 +52,16 @@ class App extends Component {
           });
         }
       });
+      if (!navigator.onLine) {
+        this.setState({
+          warningText: 'Cached data is being displayed.'
+        })
+      }
+      else {
+        this.setState({
+          warningText: ''
+        })
+      }
     }
   }
 
@@ -72,6 +84,7 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
         />
+        <WarningAlert text={this.state.offlinealert} />
         <EventList
           events={this.state.events}
         />
