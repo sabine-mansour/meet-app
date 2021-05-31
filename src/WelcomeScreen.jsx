@@ -15,21 +15,21 @@ function WelcomeScreen(props) {
             <div class="google-icon-wrapper">
               <img
                 class="google-icon"
-                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+                src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Log
+o.svg"
                 alt="Google sign-in"
               />
-
-              <button onClick={() => { props.getAccessToken() }}
-                rel="nofollow noopener"
-                class="btn-text"
-              >
-                <b>Sign in with google</b>
-              </button>
             </div>
+            <button onClick={() => { props.getAccessToken() }}
+              rel="nofollow noopener"
+              class="btn-text"
+            >
+              <b>Sign in with google</b>
+            </button>
           </div>
         </div>
         <a
-          href="https://sabine-mansour.github.io/meet/privacy.html"
+          href="https://YOUR_GITHUB_USERNAME.github.io/meet/privacy.html"
           rel="nofollow noopener"
         >
           Privacy policy
