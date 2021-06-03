@@ -48,14 +48,10 @@ class App extends Component {
         warningText: ''
       })
     }
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, this.state.numberOfEvents),
-          locations: extractLocations(events),
-        });
-      }
-    });
+    if (this.mounted) {
+      this.updateEvents()
+    }
+
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false :
       true;
@@ -93,7 +89,7 @@ class App extends Component {
           numberOfEvents={this.state.numberOfEvents}
           updateEvents={this.updateEvents}
         />
-        <WarningAlert text={this.state.offlinealert} />
+        <WarningAlert text={this.state.warningText} />
         <EventList
           events={this.state.events}
         />
