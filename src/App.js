@@ -35,8 +35,27 @@ class App extends Component {
       });
     });
   };
+
   async componentDidMount() {
     this.mounted = true;
+    if (!navigator.onLine) {
+      this.setState({
+        warningText: 'Cached data is being displayed.'
+      });
+    }
+    else {
+      this.setState({
+        warningText: ''
+      })
+    }
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events: events.slice(0, this.state.numberOfEvents),
+          locations: extractLocations(events),
+        });
+      }
+    });
     const accessToken = localStorage.getItem('access_token');
     const isTokenValid = (await checkToken(accessToken)).error ? false :
       true;
@@ -52,16 +71,6 @@ class App extends Component {
           });
         }
       });
-      if (!navigator.onLine) {
-        this.setState({
-          warningText: 'Cached data is being displayed.'
-        })
-      }
-      else {
-        this.setState({
-          warningText: ''
-        })
-      }
     }
   }
 

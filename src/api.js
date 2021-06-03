@@ -41,11 +41,10 @@ const getEvents = async () => {
   }
 
   if (!navigator.onLine) {
-    const events = localStorage.getItem("lastEvents");
+    const events = localStorage.getItem('lastEvents');
     NProgress.done();
-    return events ? JSON.parse(events).events : [];
-
-  };
+    return data ? JSON.parse(events).events : [];;
+  }
 
   const token = await getAccessToken();
 
@@ -55,8 +54,8 @@ const getEvents = async () => {
     const result = await axios.get(url);
     if (result.data) {
       var locations = extractLocations(result.data.events);
-      localStorage.setItem("lastEvents", JSON.stringify(result.data));
-      localStorage.setItem("locations", JSON.stringify(locations));
+      localStorage.setItem('lastEvents', JSON.stringify(result.data));
+      localStorage.setItem('locations', JSON.stringify(locations));
     }
     NProgress.done();
     return result.data.events;

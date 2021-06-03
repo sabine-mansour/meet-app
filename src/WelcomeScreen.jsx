@@ -10,7 +10,7 @@ function WelcomeScreen(props) {
           full-stack
           developers
 </h4>
-        <div className="button_cont" align="center">
+        <div className="login-button" align="center">
           <div class="google-btn">
             <div class="google-icon-wrapper">
               <img
