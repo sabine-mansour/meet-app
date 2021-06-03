@@ -12,7 +12,6 @@ class App extends Component {
     events: [],
     locations: [],
     numberOfEvents: 5,
-    showWelcomeScreen: undefined,
     warningText: ''
   }
 
@@ -35,7 +34,7 @@ class App extends Component {
     });
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
     if (!navigator.onLine) {
       this.setState({
@@ -46,9 +45,6 @@ class App extends Component {
       this.setState({
         warningText: ''
       })
-    }
-    if (this.mounted) {
-      this.updateEvents()
     }
     getEvents().then((events) => {
       if (this.mounted) {
