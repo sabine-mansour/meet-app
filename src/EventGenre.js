@@ -17,7 +17,7 @@ const EventGenre = ({ events }) => {
     return data;
   };
 
-  useEffect(() => { setData(() => getData()) }, [events]);
+  useEffect(() => { setData(() => getData()); }, [events]);
 
   return (
     <ResponsiveContainer height={400}>
